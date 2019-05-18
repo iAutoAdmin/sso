@@ -1,0 +1,1 @@
+# autoAdmin sso
