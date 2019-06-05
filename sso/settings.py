@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+DOMAIN = "a.com"
 # Application definition
 
 INSTALLED_APPS = [
