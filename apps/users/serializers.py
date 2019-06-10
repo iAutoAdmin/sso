@@ -18,6 +18,12 @@ class UserSerializer(serializers.ModelSerializer):
     phone       = serializers.CharField(required=False, max_length=11, min_length=11, allow_null=True, help_text="手机号",
                                         error_messages={"max_length":"手机号错误","min_length":"手机号错误"},
                                         )
+    def validate_username(self, username):
+        try:
+            User.objects.get(username=username)
+            return serializers.ValidationError("用户已存在")
+        except User.DoesNotExist:
+            return username
 
     class Meta:
         model = User
@@ -33,13 +39,6 @@ class UserRegSerializer(serializers.ModelSerializer):
     password = serializers.CharField(style={"input_type": "password"}, label="密码", write_only=True, help_text="密码")
     phone    = serializers.CharField(max_length=11, min_length=11, label="手机号", required=False,
                                      allow_null=True, allow_blank=True, help_text="手机号")
-
-    def validate_username(self, username):
-        try:
-            User.objects.get(username=username)
-            return serializers.ValidationError("用户已存在")
-        except User.DoesNotExist:
-            return username
 
     def create(self, validated_data):
         validated_data["is_active"] = False
