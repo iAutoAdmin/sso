@@ -178,6 +178,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=360),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=3600),
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }
