@@ -19,8 +19,7 @@ class UserFilter(django_filters.rest_framework.FilterSet):
 
     username = django_filters.CharFilter(lookup_expr='icontains', help_text='请输入用户名')
     name = django_filters.CharFilter(lookup_expr='icontains', help_text='请输入中文名')
-    is_active = django_filters.CharFilter(lookup_expr='icontains', help_text='状态')
 
     class Meta:
         model = User
-        fields = ['username', 'name', 'is_active']
+        fields = ['username', 'name']
