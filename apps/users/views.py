@@ -47,9 +47,6 @@ class UsersViewset(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    page_size = 10
-    page_size_query_param = 'page_size'
-    max_page_size = 100
     filter_class = UserFilter
     filter_fields = ("username", "name")
 
