@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
 SECRET_KEY = '9h5+12*1e0jz&7!3$@2z3#m+++t^w9vs=ke82h&g)+$py-f0d8'
 AUTH_SALT = ''
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
