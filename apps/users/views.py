@@ -48,7 +48,7 @@ class UsersViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     filter_class = UserFilter
-    filter_fields = ("username",)
+    filter_fields = ("username", "name", "phone")
 
     def get_queryset(self):
         queryset = super(UsersViewset, self).get_queryset()

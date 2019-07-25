@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
 SECRET_KEY = '9h5+12*1e0jz&7!3$@2z3#m+++t^w9vs=ke82h&g)+$py-f0d8'
 AUTH_SALT = ''
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -154,7 +154,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': 'sso.paginations.Pagination',
     'PAGE_SIZE': 10
 }
 
@@ -178,6 +179,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=360),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300000),
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }
