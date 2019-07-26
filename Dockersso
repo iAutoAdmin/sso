@@ -1,0 +1,17 @@
+FROM centos:7
+ADD 3.7.2   /opt/python3
+RUN echo 'export PATH=$PATH:/opt/python3/bin' > /etc/profile.d/python37.sh   
+RUN curl -o /etc/pip.conf  https://client-doc.oss-cn-beijing.aliyuncs.com/pip.conf  
+RUN source /etc/profile
+ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/python3/bin
+WORKDIR  /opt/sso
+ADD sso  /opt/sso
+RUN rm -f /etc/yum.repo.d/*repo  && \
+    curl -o /etc/yum.repos.d/c7.repo   https://client-doc.oss-cn-beijing.aliyuncs.com/my-yumfile.repo && \ 
+    yum install -y mariadb-libs mariadb-devel gcc net-tools && \
+    python3 -m pip install -r /opt/sso/requirement.txt  && \
+    python3  /opt/sso/manage.py makemigrations && \
+    python3  /opt/sso/manage.py migrate 
+
+EXPOSE 8000
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
